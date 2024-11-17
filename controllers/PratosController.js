@@ -40,13 +40,19 @@ class Pratos {
   update(req, res) {
     const { id, titulo, sobre } = req.body;
     const verify = this.pratos.find((prato) => prato.id === id);
+    const positionPrato = this.pratos.findIndex((prato) => prato.id === id);
+
     if (!verify) {
       res.status(400).json({ error: "O prato declarado não existe" });
     }
 
     this.pratos.map((prato) => {
-     
+      prato.titulo = titulo
     })
+    this.pratos.map((prato) => {
+      prato.sobre = sobre
+    })
+    return res.send(this.pratos[positionPrato])
   }
 
   delete(req, res) {
